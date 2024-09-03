@@ -4,6 +4,7 @@ import MintButton from './components/MintButton';
 import MergeButton from './components/MergeButton';
 import FileMetadata from './components/FileMetadata';
 import OpenSeaAssets from './components/OpenSeaAssets';
+import './styles/global.css';
 
 function App() {
   const [web3, setWeb3] = useState(null);
