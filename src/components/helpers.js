@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CONFIG } from './config/apiConfig.js'; // Assumendo che CONFIG sia necessario per le funzioni
+import { CONFIG } from '../config/apiConfig.js'; // Assumendo che CONFIG sia necessario per le funzioni
 
 export async function uploadFileToIPFS(file) {
     const url = 'https://api.pinata.cloud/pinning/pinFileToIPFS';
