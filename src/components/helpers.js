@@ -54,6 +54,21 @@ export async function validateAudioFile(file) {
     });
 }
 
+  // Funzione per caricare JSON su IPFS
+  export async function uploadJSONToIPFS(jsonBlob, fileName = 'metadata.json') {
+    const file = new File([jsonBlob], fileName, { type: 'application/json' });
+
+    try {
+        // Riutilizzo di uploadFileToIPFS per caricare il file JSON
+        const ipfsHash = await uploadFileToIPFS(file);
+        console.log('Metadata uploaded JSON', ipfsHash);
+        return ipfsHash;
+    } catch (error) {
+        console.error('Error uploading JSON to IPFS:', error);
+        throw error;
+    }
+}
+
 export async function verifyNoteWithPython(fileUri) {
     const requestId = uuid.v4();
     const data = { fileUri: fileUri, requestId: requestId };
