@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Web3 from 'web3';
-import { loadContractConfig } from './connections.js';
+import { loadContractConfig } from './config/apiConfig.js';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
