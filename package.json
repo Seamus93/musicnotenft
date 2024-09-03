@@ -10,6 +10,7 @@
     "jsmediatags": "^3.9.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-native-fs": "^2.20.0",
     "react-scripts": "5.0.1",
     "uuid": "^10.0.0",
     "web-vitals": "^2.1.4",
