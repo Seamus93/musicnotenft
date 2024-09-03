@@ -10,7 +10,7 @@ const CONFIG = {
         apiKey: '9a5f591a-757a-4f14-b087-be44ec6f9d8f-00-37x90b1i3z4t0'
     },
     contract: {
-        abiUrl: '/artifacts/contracts/MyNFT.json',
+        abiUrl: '../artifacts/MyNFT.json',
         // La chiave "contractAddress" sarà gestita attraverso l'ABI JSON
         contractAddress: '' // Questo sarà caricato dal file ABI JSON
     },
