@@ -1,0 +1,73 @@
+/* Stile base per il layout e gli elementi */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#loginButton, 
+#mintButton, 
+#mergeButton {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 20px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#loginButton:disabled, 
+#mintButton:disabled, 
+#mergeButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#opensea-assets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.asset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.asset-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.asset-name {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.asset-description {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.asset-link {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #1d3557;
+}
+
+#accountAddress,
+#ipfsUri,
+#txHash,
+#fileMetadata {
+    margin: 10px 0;
+    font-size: 0.95em;
+    color: #333;
+}
