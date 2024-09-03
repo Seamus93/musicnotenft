@@ -118,6 +118,28 @@ export async function createAndUpdateMetadata(file, extractMetadata, fileName) {
     }
 }
 
+export async function extractMetadataFromFile(file) {
+    return new Promise((resolve, reject) => {
+        jsmediatags.read(file, {
+            onSuccess: function(tag) {
+                resolve({
+                    artist: tag.tags.artist,
+                    album: tag.tags.album,
+                    year: tag.tags.year,
+                    genre: tag.tags.genre,
+                    title: tag.tags.title,
+                    comment: tag.tags.comment ? tag.tags.comment.text : null,
+                    ipfsHash: '', // Questo sarà impostato più tardi
+                });
+            },
+            onError: function(error) {
+                console.error('Error extracting metadata:', error);
+                reject(error);
+            }
+        });
+    });
+}
+
 export async function fetchAndUpdateMetadata(mp3MetadataCID, mp3CID, isPrimaryNFT, mp3FileName) {
     const standardJsonForMp3CID = CONFIG.baseJSON.metadataNoteJSONCID;
     
