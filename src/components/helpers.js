@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import jsmediatags from 'jsmediatags';
 import { CONFIG } from '../config/apiConfig.js'; // Assumendo che CONFIG sia necessario per le funzioni
 
 export async function uploadFileToIPFS(file) {
