@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import jsmediatags from 'jsmediatags';
+import { parseBlob } from 'music-metadata'; // Importa la funzione parseBlob da music-metadata
 import { CONFIG } from '../config/apiConfig.js'; // Assumendo che CONFIG sia necessario per le funzioni
 
 export async function uploadFileToIPFS(file) {
@@ -35,29 +35,19 @@ export async function validateAudioFile(file) {
         return false;
     }
 
-    return new Promise((resolve, reject) => {
-        try {
-            jsmediatags.read(file, {
-                onSuccess: function(tag) {
-                    console.log('File metadata:', tag);
-                    resolve(true);
-                },
-                onError: function(error) {
-                    alert('Error reading file metadata. Please try again.');
-                    console.error('Error reading file metadata:', error);
-                    resolve(false);
-                }
-            });
-        } catch (e) {
-            alert('An unexpected error occurred. Please try again.');
-            console.error('Exception during metadata read:', e);
-            resolve(false);
-        }
-    });
+    try {
+        const metadata = await parseBlob(file);
+        console.log('File metadata:', metadata);
+        return true;
+    } catch (error) {
+        alert('Error reading file metadata. Please try again.');
+        console.error('Error reading file metadata:', error);
+        return false;
+    }
 }
 
-  // Funzione per caricare JSON su IPFS
-  export async function uploadJSONToIPFS(jsonBlob, fileName = 'metadata.json') {
+// Funzione per caricare JSON su IPFS
+export async function uploadJSONToIPFS(jsonBlob, fileName = 'metadata.json') {
     const file = new File([jsonBlob], fileName, { type: 'application/json' });
 
     try {
@@ -72,7 +62,7 @@ export async function validateAudioFile(file) {
 }
 
 export async function verifyNoteWithPython(fileUri) {
-    const requestId = uuid.v4();
+    const requestId = uuidv4();
     const data = { fileUri: fileUri, requestId: requestId };
     
     const url = `https://${CONFIG.replit.apiKey}.riker.replit.dev/verify`;
@@ -121,25 +111,21 @@ export async function createAndUpdateMetadata(file, extractMetadata, fileName) {
 }
 
 export async function extractMetadataFromFile(file) {
-    return new Promise((resolve, reject) => {
-        jsmediatags.read(file, {
-            onSuccess: function(tag) {
-                resolve({
-                    artist: tag.tags.artist,
-                    album: tag.tags.album,
-                    year: tag.tags.year,
-                    genre: tag.tags.genre,
-                    title: tag.tags.title,
-                    comment: tag.tags.comment ? tag.tags.comment.text : null,
-                    ipfsHash: '', // Questo sarà impostato più tardi
-                });
-            },
-            onError: function(error) {
-                console.error('Error extracting metadata:', error);
-                reject(error);
-            }
-        });
-    });
+    try {
+        const metadata = await parseBlob(file);
+        return {
+            artist: metadata.common.artist,
+            album: metadata.common.album,
+            year: metadata.common.year,
+            genre: metadata.common.genre,
+            title: metadata.common.title,
+            comment: metadata.common.comment,
+            ipfsHash: '', // Questo sarà impostato più tardi
+        };
+    } catch (error) {
+        console.error('Error extracting metadata:', error);
+        throw error;
+    }
 }
 
 export async function fetchAndUpdateMetadata(mp3MetadataCID, mp3CID, isPrimaryNFT, mp3FileName) {
