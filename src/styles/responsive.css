@@ -75,16 +75,17 @@
     #opensea-assets {
         display: grid;
         grid-template-columns: 1fr; /* Imposta una colonna che prende tutto lo spazio disponibile */
-        overflow-x: auto; /* Abilita lo scroll orizzontale */
-        gap: 10px;
-        padding: 10px 0;
+        overflow-x: hidden; /* Abilita lo scroll orizzontale */
+        gap: 0px;
+        padding: 0;
         scroll-snap-type: x mandatory; /* Aggiunge il comportamento di scorrimento scattante */
     }
 
     /* Singole card */
     #opensea-assets > div {
         scroll-snap-align: start; /* Scatta alla card successiva */
-        min-width: 100%; /* Ogni card occupa il 100% della larghezza visibile */
+        width: 100%; /* Ogni card occupa il 100% della larghezza visibile */
+        box-sizing: border-box; /* Include padding e bordi nella larghezza totale */
     }
 
     /* Immagine dell'asset */
