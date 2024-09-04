@@ -1,3 +1,5 @@
+// App.js
+
 import React, { useState, useEffect } from 'react';
 import LoginButton from './components/LoginButton';
 import MintButton from './components/MintButton';
@@ -20,16 +22,20 @@ function App() {
   }, []);
 
   const loadOpenSeaAssets = async () => {
-    // Questa funzione potrebbe non essere necessaria se OpenSeaAssets gestisce autonomamente il caricamento
+    // Implement this function if needed
+  };
+
+  // Funzione per gestire il login
+  const handleLogin = (account, contract, web3) => {
+    setAccount(account);
+    setContract(contract);
+    setWeb3(web3);
+    console.log('Logged in:', account);
   };
 
   return (
     <div>
-      <LoginButton
-        setWeb3={setWeb3}
-        setAccount={setAccount}
-        setContract={setContract}
-      />
+      <LoginButton onLogin={handleLogin} />
       <MintButton
         web3={web3}
         account={account}
