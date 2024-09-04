@@ -211,54 +211,6 @@ button:disabled {
 /* Layout responsive */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px; /* Aggiungi padding per il miglioramento visivo */
-    }
-    
-    .navbar-brand {
-        font-size: 1.2em;
-    }
-    
-    .navbar-links {
-        margin-top: 10px;
-        flex-direction: row;
-        width: 100%;
-        justify-content: flex-end; /* Allinea i link a destra */
-        padding: 0; /* Rimuovi il padding per evitare spazi indesiderati */
-    }
-    
-    .navbar-links a {
-        margin: 5px 0;
-    }
-    
-    .main-content {
-        padding: 10px;
-    }
-    
-    .mint-merge-container {
-        flex-direction: column;
-    }
-    
-    .mint-section,
-    .merge-section {
-        flex: 1;
-        max-width: 100%;
-    }
-
-    #opensea-assets {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 3fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
-    }
-
-    .login-button {
-        padding: 8px 16px; /* Adatta il padding come necessario */
-    }
-}
-
-/* Layout responsive per dispositivi con larghezza massima di 480px */
-@media (max-width: 540px) {
-    /* Navbar */
-    .navbar {
         flex-direction: row; /* Disporre gli elementi in una riga */
         justify-content: space-between; /* Spazio tra brand e link */
         align-items: center; /* Allinea verticalmente gli elementi */
@@ -285,6 +237,33 @@ button:disabled {
         font-size: 0.9em; /* Riduci la dimensione del testo del pulsante di login */
         margin-left: 5px; /* Aggiungi spazio a sinistra del pulsante di login */
     }
+    
+    .main-content {
+        padding: 10px;
+    }
+    
+    .mint-merge-container {
+        flex-direction: column;
+    }
+    
+    .mint-section,
+    .merge-section {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    #opensea-assets {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 3fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
+    }
+
+    .asset-description {
+        font-size: 0.8em; /* Riduci la dimensione del testo per la descrizione */
+    }
+
+}
+
+/* Layout responsive per dispositivi con larghezza massima di 480px */
+@media (max-width: 540px) {
 
     /* Main Content */
     .main-content {
@@ -320,7 +299,7 @@ button:disabled {
     }
 
     .asset-description {
-        font-size: 0.8em; /* Riduci la dimensione del testo per la descrizione */
+        font-size: 0.7em; /* Riduci la dimensione del testo per la descrizione */
     }
 
     /* Pulsanti generici */
