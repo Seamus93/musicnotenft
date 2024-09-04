@@ -87,8 +87,9 @@
     }
 
     .asset-image {
-        width: 540px;
-        height: 140px;
+        width: 100%; /* Fa in modo che l'immagine riempia la larghezza della card */
+        max-width: 100%; /* La larghezza massima sarà la dimensione dello schermo */
+        height: auto; /* Mantiene il rapporto d'aspetto dell'immagine */
     }
 
     .asset-name {
