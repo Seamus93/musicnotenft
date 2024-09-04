@@ -204,6 +204,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.login-button {
+    margin-left: auto; /* Sposta il pulsante verso destra */
+}
+
 /* Layout responsive */
 @media (max-width: 768px) {
     .navbar {
@@ -244,6 +248,10 @@ button:disabled {
 
     #opensea-assets {
         grid-template-columns: repeat(auto-fill, minmax(150px, 3fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
+    }
+
+    .login-button {
+        padding: 8px 16px; /* Adatta il padding come necessario */
     }
 }
 

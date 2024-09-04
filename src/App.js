@@ -37,7 +37,7 @@ function App() {
       <nav className="navbar">
         <div className="navbar-brand">My NFT App</div>
         <div className="navbar-links">
-          <LoginButton onLogin={handleLogin} />
+          <LoginButton className="login-button" onLogin={handleLogin} />
         </div>
       </nav>
 
