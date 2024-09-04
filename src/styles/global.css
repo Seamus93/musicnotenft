@@ -92,8 +92,11 @@ body {
 /* OpenSea Assets Gallery */
 #opensea-assets {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne */
+    grid-template-rows: repeat(3, auto); /* 3 righe */
     gap: 20px;
+    max-height: 600px; /* Altezza massima della griglia per 3 righe */
+    overflow-y: scroll; /* Abilita lo scroll verticale */
     margin-top: 20px;
     justify-content: center;
 }
@@ -117,6 +120,8 @@ body {
 .asset-image {
     max-width: 100%;
     height: auto;
+    padding-bottom: 100%; /* Mantiene un rapporto 1:1 per creare un quadrato */
+    object-fit: cover; /* Assicura che l'immagine riempia completamente il quadrato senza distorsioni */
     border-radius: 8px;
     margin-bottom: 10px;
 }
