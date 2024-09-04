@@ -73,7 +73,8 @@
 
     /* Modifica per visualizzare una sola card alla volta con scorrimento orizzontale */
     #opensea-assets {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 10px;
@@ -85,12 +86,14 @@
         width: 100%;
         max-width: 540px;
         scroll-snap-align: start; /* Scatta alla card successiva */
+        box-sizing: border-box; /* Include padding e bordi nella larghezza totale */
     }
 
     .asset-image {
         width: 100%;
         max-width: 540px;
         height: 140px;
+        object-fit: cover; /* Mantiene il rapporto d'aspetto e riempie lo spazio */
     }
 
     .asset-name {
