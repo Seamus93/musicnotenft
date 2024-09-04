@@ -47,6 +47,51 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Assicurati che il pop-up sia sopra altri contenuti */
+}
+
+.popup-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.popup-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f44336; /* Colore del pulsante di chiusura */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-close-button:hover {
+    background: #d32f2f; /* Colore del pulsante di chiusura al passaggio del mouse */
+}
+
 /* Aggiungi questo al tuo file global.css o in un file CSS specifico */
 .transaction-info {
     font-size: 1.1em;

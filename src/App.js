@@ -13,6 +13,7 @@ function App() {
   const [fileMetadata, setFileMetadata] = useState(null);
   const [txHash, setTxHash] = useState(null);
   const [ipfsUri, setIpfsUri] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     // Load OpenSea assets on component mount
@@ -21,6 +22,17 @@ function App() {
 
   const loadOpenSeaAssets = async () => {
     // Implement this function if needed
+  };
+
+  const handleMintComplete = (ipfsUri, txHash, fileMetadata) => {
+    setIpfsUri(ipfsUri);
+    setTxHash(txHash);
+    setFileMetadata(fileMetadata);
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
 
   // Funzione per gestire il login
@@ -50,9 +62,7 @@ function App() {
               web3={web3}
               account={account}
               contract={contract}
-              setIpfsUri={setIpfsUri}
-              setTxHash={setTxHash}
-              setFileMetadata={setFileMetadata}
+              onMintComplete={handleMintComplete} // Passa la funzione per gestire il completamento del mint
             />
           </div>
 
@@ -67,15 +77,19 @@ function App() {
           </div>
         </div>
 
-        <div className="file-metadata-container">
-          <FileMetadata metadata={fileMetadata} />
-          <div className="transaction-info">
-            <p><strong>IPFS URI:</strong> {ipfsUri}</p>
-            <p><strong>Transaction Hash:</strong> {txHash}</p>
+        {/* Pop-up */}
+        {showPopup && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <button className="popup-close-button" onClick={handleClosePopup}>X</button>
+              <FileMetadata metadata={fileMetadata} />
+              <div className="transaction-info">
+                <p><strong>IPFS URI:</strong> {ipfsUri}</p>
+                <p><strong>Transaction Hash:</strong> {txHash}</p>
+              </div>
+            </div>
           </div>
-        </div>
-
-       
+        )}
 
         <OpenSeaAssets collectionSlug="musicnotenft" />
       </div>
