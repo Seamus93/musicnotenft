@@ -40,5 +40,5 @@ async function loadContractConfig() {
     }
 }
 
-// Esportiamo la configurazione
+// Esportiamo la configuravzione
 export { CONFIG, loadContractConfig };
