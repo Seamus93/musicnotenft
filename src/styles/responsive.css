@@ -83,12 +83,13 @@
     #opensea-assets > div {
         flex: 0 0 auto; /* Mantiene una card visibile per volta */
         width: 100%;
-        max-width: 100%;
+        max-width: 540px;
         scroll-snap-align: start; /* Scatta alla card successiva */
     }
 
     .asset-image {
         width: 100%;
+        max-width: 540px;
         height: 140px;
     }
 
