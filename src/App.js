@@ -32,7 +32,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-brand">My NFT App</div>
@@ -40,26 +40,42 @@ function App() {
           <LoginButton onLogin={handleLogin} />
         </div>
       </nav>
-      
+
       {/* Main Content */}
       <div className="main-content">
-        <MintButton
-          web3={web3}
-          account={account}
-          contract={contract}
-          setIpfsUri={setIpfsUri}
-          setTxHash={setTxHash}
-          setFileMetadata={setFileMetadata}
-        />
-        <MergeButton
-          web3={web3}
-          account={account}
-          contract={contract}
-          setTxHash={setTxHash}
-        />
-        <FileMetadata metadata={fileMetadata} />
-        <p>IPFS URI: {ipfsUri}</p>
-        <p>Transaction Hash: {txHash}</p>
+        <div className="mint-merge-container">
+          <div className="mint-section">
+            <h2>Mint Your NFT</h2>
+            <MintButton
+              web3={web3}
+              account={account}
+              contract={contract}
+              setIpfsUri={setIpfsUri}
+              setTxHash={setTxHash}
+              setFileMetadata={setFileMetadata}
+            />
+          </div>
+
+          <div className="merge-section">
+            <h2>Merge Your NFTs</h2>
+            <MergeButton
+              web3={web3}
+              account={account}
+              contract={contract}
+              setTxHash={setTxHash}
+            />
+          </div>
+        </div>
+
+        <div className="file-metadata-container">
+          <FileMetadata metadata={fileMetadata} />
+        </div>
+
+        <div className="transaction-info">
+          <p><strong>IPFS URI:</strong> {ipfsUri}</p>
+          <p><strong>Transaction Hash:</strong> {txHash}</p>
+        </div>
+
         <OpenSeaAssets collectionSlug="musicnotenft" />
       </div>
     </div>

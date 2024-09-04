@@ -17,6 +17,7 @@ body {
     padding: 10px 20px;
     background-color: #264653;
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
@@ -29,34 +30,63 @@ body {
     align-items: center;
 }
 
-/* Pulsanti generici */
-button {
-    display: inline-block;
-    margin: 5px 0;
-    padding: 10px 20px;
-    background-color: #2a9d8f;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-button:hover {
-    background-color: #21867a;
-    transform: translateY(-2px);
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
 /* Main Content */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .main-content {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Mint and Merge Sections */
+.mint-merge-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.mint-section,
+.merge-section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.mint-section h2,
+.merge-section h2 {
+    font-size: 1.8em;
+    color: #264653;
+    margin-bottom: 10px;
+}
+
+.mint-section p,
+.merge-section p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* File Metadata */
+.file-metadata-container {
+    margin-bottom: 20px;
+}
+
+/* Transaction Info */
+.transaction-info {
+    font-size: 1.1em;
+    margin: 20px 0;
+}
+
+.transaction-info p {
+    margin: 5px 0;
 }
 
 /* OpenSea Assets Gallery */
@@ -114,15 +144,30 @@ button:disabled {
     text-decoration: underline;
 }
 
-/* Stili per gli elementi di testo */
-p {
-    font-size: 1em;
-    color: #333;
+/* Pulsanti generici */
+button {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 20px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Media Queries per il responsive design */
+button:hover {
+    background-color: #21867a;
+    transform: translateY(-2px);
+}
 
-/* Layout responsivo per la navbar */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Layout responsive */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -142,43 +187,28 @@ p {
     .navbar-links a {
         margin: 5px 0;
     }
-}
-
-/* Layout responsivo per il contenuto principale */
-@media (max-width: 768px) {
+    
     .main-content {
         padding: 10px;
     }
-}
-
-/* Layout responsivo per la galleria di asset */
-@media (max-width: 768px) {
-    #opensea-assets {
+    
+    .mint-merge-container {
         flex-direction: column;
-        align-items: center;
     }
-
-    .asset {
-        flex: 1 1 calc(50% - 20px);
-        max-width: 600px;
+    
+    .mint-section,
+    .merge-section {
+        flex: 1;
+        max-width: 100%;
     }
 }
 
-/* Modifiche aggiuntive per schermi molto piccoli */
 @media (max-width: 480px) {
     .navbar-brand {
         font-size: 1em;
     }
     
     .navbar-links a {
-        font-size: 0.9em;
-    }
-
-    .asset-name {
-        font-size: 1em;
-    }
-
-    .asset-description {
         font-size: 0.9em;
     }
 }
