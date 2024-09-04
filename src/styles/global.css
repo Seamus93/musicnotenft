@@ -1,20 +1,56 @@
 /* Stile base per il layout e gli elementi */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f9f9f9, #e2e2e2);
+    color: #333;
+    min-height: 100vh;
 }
 
+/* Stili per la navbar */
+.navbar {
+    background-color: #264653;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Stili per i pulsanti */
 #loginButton, 
 #mintButton, 
 #mergeButton {
     display: inline-block;
-    margin: 5px 0;
+    margin: 0 10px;
     padding: 10px 20px;
     background-color: #2a9d8f;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#loginButton:hover, 
+#mintButton:hover, 
+#mergeButton:hover {
+    background-color: #21867a;
+    transform: translateY(-2px);
 }
 
 #loginButton:disabled, 
@@ -24,20 +60,33 @@ body {
     cursor: not-allowed;
 }
 
+/* Stili per il contenuto principale */
+.main-content {
+    padding: 20px;
+}
+
+/* Stili per gli asset di OpenSea */
 #opensea-assets {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .asset {
     border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    width: calc(25% - 20px);
+    padding: 15px;
+    border-radius: 12px;
+    width: calc(25% - 30px);
     box-sizing: border-box;
     text-align: center;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.asset:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .asset-image {
@@ -48,26 +97,60 @@ body {
 
 .asset-name {
     margin: 10px 0;
-    font-size: 1.1em;
+    font-size: 1.2em;
+    color: #1d3557;
+    font-weight: 600;
 }
 
 .asset-description {
-    font-size: 0.9em;
+    font-size: 1em;
     color: #555;
+    margin-bottom: 10px;
 }
 
 .asset-link {
     display: block;
     margin-top: 10px;
     text-decoration: none;
-    color: #1d3557;
+    color: #457b9d;
+    font-weight: 500;
 }
 
+.asset-link:hover {
+    text-decoration: underline;
+}
+
+/* Stili per le informazioni dell'account */
 #accountAddress,
 #ipfsUri,
 #txHash,
 #fileMetadata {
     margin: 10px 0;
-    font-size: 0.95em;
+    font-size: 1em;
     color: #333;
+}
+
+/* Stile aggiuntivo per una migliore responsività */
+@media (max-width: 768px) {
+    .asset {
+        width: calc(50% - 30px);
+    }
+
+    #loginButton, 
+    #mintButton, 
+    #mergeButton {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .asset {
+        width: 100%;
+    }
+
+    .navbar-brand {
+        font-size: 1.5em;
+    }
 }

@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useState, useEffect } from 'react';
 import LoginButton from './components/LoginButton';
 import MintButton from './components/MintButton';
@@ -35,25 +33,35 @@ function App() {
 
   return (
     <div>
-      <LoginButton onLogin={handleLogin} />
-      <MintButton
-        web3={web3}
-        account={account}
-        contract={contract}
-        setIpfsUri={setIpfsUri}
-        setTxHash={setTxHash}
-        setFileMetadata={setFileMetadata}
-      />
-      <MergeButton
-        web3={web3}
-        account={account}
-        contract={contract}
-        setTxHash={setTxHash}
-      />
-      <FileMetadata metadata={fileMetadata} />
-      <p>IPFS URI: {ipfsUri}</p>
-      <p>Transaction Hash: {txHash}</p>
-      <OpenSeaAssets collectionSlug="musicnotenft" />
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="navbar-brand">My NFT App</div>
+        <div className="navbar-links">
+          <LoginButton onLogin={handleLogin} />
+        </div>
+      </nav>
+      
+      {/* Main Content */}
+      <div className="main-content">
+        <MintButton
+          web3={web3}
+          account={account}
+          contract={contract}
+          setIpfsUri={setIpfsUri}
+          setTxHash={setTxHash}
+          setFileMetadata={setFileMetadata}
+        />
+        <MergeButton
+          web3={web3}
+          account={account}
+          contract={contract}
+          setTxHash={setTxHash}
+        />
+        <FileMetadata metadata={fileMetadata} />
+        <p>IPFS URI: {ipfsUri}</p>
+        <p>Transaction Hash: {txHash}</p>
+        <OpenSeaAssets collectionSlug="musicnotenft" />
+      </div>
     </div>
   );
 }
