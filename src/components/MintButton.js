@@ -1,9 +1,3 @@
-// MintButton.js
-
-import React, { useState } from 'react';
-import axios from 'axios';
-import { uploadFileToIPFS, validateAudioFile, verifyNoteWithPython, createAndUpdateMetadata, fetchAndUpdateMetadata } from './helpers.js';
-
 const MintButton = ({ account, contract }) => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -22,6 +16,11 @@ const MintButton = ({ account, contract }) => {
 
         try {
             const file = await promptFileUpload();
+            if (!file) {
+                console.error('No file selected');
+                setIsLoading(false); // Termina il caricamento se non c'è file
+                return;
+            }
             console.log("File selected:", file);
 
             const [mp3CID, isValidFile] = await Promise.all([
@@ -86,7 +85,7 @@ const MintButton = ({ account, contract }) => {
                 if (file) {
                     resolve(file);
                 } else {
-                    reject(new Error('No file selected'));
+                    resolve(null); // Risolve con null se nessun file è stato selezionato
                 }
             };
             fileInput.click();
