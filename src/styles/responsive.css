@@ -86,7 +86,7 @@
         flex-wrap: wrap;
         overflow: hidden;
         max-width: 540px;
-        scroll-snap-align: center; /* Scatta alla card successiva */
+        scroll-snap-align: start; /* Scatta alla card successiva */
         box-sizing: border-box; /* Include padding e bordi nella larghezza totale */
     }
 
