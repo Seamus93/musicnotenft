@@ -99,9 +99,7 @@ const MintButton = ({ account, contract }) => {
                 {isLoading ? 'Minting...' : 'Mint NFT'}
             </button>
             {isLoading && (
-                <div className="loading-overlay">
-                    <div className="loading-spinner"></div>
-                </div>
+                <div className="loading-spinner"></div>
             )}
         </div>
     );

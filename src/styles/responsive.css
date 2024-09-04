@@ -50,20 +50,20 @@
     }
 }
 
+/* Responsive layout per schermi piccoli */
 @media (max-width: 540px) {
-    /* Stili generali */
     .navbar-brand {
         font-size: 1.2em;
     }
-
+    
     .main-content {
         padding: 10px;
     }
-
+    
     .mint-merge-container {
         flex-direction: column;
     }
-
+    
     .mint-section,
     .merge-section {
         flex: 1;
@@ -71,28 +71,25 @@
         margin-bottom: 20px;
     }
 
-    /* Layout a griglia per mostrare una card alla volta */
+    /* Modifica per visualizzare una sola card alla volta con scorrimento orizzontale */
     #opensea-assets {
-        display: grid;
-        grid-template-columns: 1fr; /* Imposta una colonna che prende tutto lo spazio disponibile */
-        overflow-x: hidden; /* Abilita lo scroll orizzontale */
-        gap: 0px;
-        padding: 0;
-        scroll-snap-type: x mandatory; /* Aggiunge il comportamento di scorrimento scattante */
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding: 10px 0;
     }
 
-    /* Singole card */
     #opensea-assets > div {
+        flex: 0 0 auto; /* Mantiene una card visibile per volta */
+        width: 100%;
+        max-width: 100%;
         scroll-snap-align: start; /* Scatta alla card successiva */
-        width: 100%; /* Ogni card occupa il 100% della larghezza visibile */
-        box-sizing: border-box; /* Include padding e bordi nella larghezza totale */
     }
 
-    /* Immagine dell'asset */
     .asset-image {
-        width: 100%; /* Fa in modo che l'immagine riempia la larghezza della card */
-        max-width: 100%; /* La larghezza massima sarà la dimensione dello schermo */
-        height: auto; /* Mantiene il rapporto d'aspetto dell'immagine */
+        width: 100%;
+        height: 140px;
     }
 
     .asset-name {
@@ -108,4 +105,6 @@
         font-size: 0.9em;
     }
 }
+
+
 
