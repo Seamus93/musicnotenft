@@ -99,6 +99,24 @@ body {
     overflow-y: scroll; /* Abilita lo scroll verticale */
     margin-top: 20px;
     justify-content: center;
+    scrollbar-width: thin; /* Per Firefox: barra di scorrimento sottile */
+    scrollbar-color: #2a9d8f #e2e2e2; /* Per Firefox: colore della barra e dello sfondo */
+}
+
+/* Personalizzazione per Webkit browsers (Chrome, Safari, Edge basato su Chromium) */
+#opensea-assets::-webkit-scrollbar {
+    width: 12px; /* Larghezza della barra di scorrimento */
+}
+
+#opensea-assets::-webkit-scrollbar-thumb {
+    background-color: #2a9d8f; /* Colore del "pollice" (parte mobile) della barra di scorrimento */
+    border-radius: 8px; /* Angoli arrotondati */
+    border: 3px solid #e2e2e2; /* Spazio tra il pollice e la barra di scorrimento */
+}
+
+#opensea-assets::-webkit-scrollbar-track {
+    background-color: #e2e2e2; /* Colore dello sfondo della barra di scorrimento */
+    border-radius: 8px; /* Angoli arrotondati per il tracciato */
 }
 
 /* Stile della card */
