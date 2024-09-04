@@ -70,10 +70,20 @@
         margin-bottom: 20px;
     }
 
+    /* Modifica per visualizzare una sola card alla volta con scorrimento orizzontale */
     #opensea-assets {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        max-height: 400px;
-        overflow-y: auto;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    #opensea-assets > div {
+        flex: 0 0 auto; /* Mantiene una card visibile per volta */
+        width: 100%;
+        max-width: 100%;
+        scroll-snap-align: start; /* Scatta alla card successiva */
     }
 
     .asset-image {
