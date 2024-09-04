@@ -83,6 +83,8 @@
 
     #opensea-assets > div {
         flex: 0 0 auto; /* Mantiene una card visibile per volta */
+        flex-wrap: wrap;
+        overflow: hidden;
         max-width: 540px;
         scroll-snap-align: center; /* Scatta alla card successiva */
         box-sizing: border-box; /* Include padding e bordi nella larghezza totale */
