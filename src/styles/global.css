@@ -119,12 +119,14 @@ body {
 }
 
 .asset-image {
-    max-width: 100%;
-    height: 100%;
-    object-fit: cover; /* Assicura che l'immagine riempia completamente il quadrato senza distorsioni */
+    width: 100%; /* La larghezza dell'immagine riempie completamente il contenitore */
+    height: 0; 
+    padding-bottom: 100%; /* Questo crea un contenitore quadrato perché il padding-bottom è relativo alla larghezza */
+    object-fit: cover; /* Assicura che l'immagine riempia completamente il contenitore quadrato */
     border-radius: 8px;
     margin-bottom: 10px;
 }
+
 
 .asset-name {
     font-size: 1.2em;
