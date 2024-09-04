@@ -147,7 +147,6 @@ body {
     margin-bottom: 10px; 
 }
 
-
 .asset-name {
     font-size: 1.2em;
     color: #1d3557;
@@ -256,6 +255,15 @@ button:disabled {
         grid-template-columns: repeat(auto-fill, minmax(150px, 3fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
     }
 
+    .asset-image {
+        width: 100%; /* La larghezza dell'immagine riempie completamente il contenitore */
+        height: 164px; /* Inizialmente imposta l'altezza a 0 */
+        padding-bottom: 2%;
+        object-fit: cover; /* Assicura che l'immagine riempia completamente il contenitore quadrato */
+        border-radius: 8px;
+        margin-bottom: 10px; 
+    }
+
     .asset-description {
         font-size: 0.8em; /* Riduci la dimensione del testo per la descrizione */
     }
@@ -289,8 +297,13 @@ button:disabled {
     }
 
     /* Stile della card */
-    .asset-image {
-        height: 200px; /* Riduci l'altezza dell'immagine per adattarla meglio ai dispositivi piccoli */
+     .asset-image {
+        width: 100%; /* La larghezza dell'immagine riempie completamente il contenitore */
+        height: 140px; /* Inizialmente imposta l'altezza a 0 */
+        padding-bottom: 2%;
+        object-fit: cover; /* Assicura che l'immagine riempia completamente il contenitore quadrato */
+        border-radius: 8px;
+        margin-bottom: 10px; 
     }
 
     .asset-name {
