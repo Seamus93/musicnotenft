@@ -259,20 +259,20 @@ button:disabled {
 @media (max-width: 540px) {
     /* Navbar */
     .navbar {
-        flex-direction: column;
-        align-items: flex-start; /* Allinea gli elementi della navbar a sinistra */
-        padding: 10px; /* Aggiungi padding per una migliore visualizzazione */
+        flex-direction: row; /* Disporre gli elementi in una riga */
+        justify-content: space-between; /* Spazio tra brand e link */
+        align-items: center; /* Allinea verticalmente gli elementi */
+        padding: 10px; /* Padding per una migliore visualizzazione */
     }
     
     .navbar-brand {
         font-size: 1.2em; /* Riduci leggermente la dimensione del testo */
-        margin-bottom: 10px; /* Aggiungi spazio sotto il brand */
+        margin: 0; /* Aggiungi spazio sotto il brand */
     }
     
     .navbar-links {
-        flex-direction: column; /* Disporre i link verticalmente */
-        align-items: flex-start; /* Allinea i link a sinistra */
-        width: 100%; /* Fai sì che occupino tutta la larghezza disponibile */
+        display: flex; /* Mostra i link come un elemento flex */
+        gap: 10px; /* Spazio tra i link */
     }
     
     .navbar-links a {
@@ -281,9 +281,9 @@ button:disabled {
     }
     
     .login-button {
-        padding: 8px 16px; /* Adatta il padding per dispositivi più piccoli */
-        margin-top: 10px; /* Aggiungi spazio sopra il pulsante di login */
-        align-self: center; /* Centra il pulsante nella navbar */
+        padding: 8px 16px; /* Adatta il padding come necessario */
+        font-size: 0.9em; /* Riduci la dimensione del testo del pulsante di login */
+        margin-left: 20px; /* Aggiungi spazio a sinistra del pulsante di login */
     }
 
     /* Main Content */
