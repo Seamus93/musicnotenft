@@ -120,7 +120,7 @@ body {
 
 .asset-image {
     width: 100%; /* La larghezza dell'immagine riempie completamente il contenitore */
-    height: 0; 
+    height: 347px; /* Inizialmente imposta l'altezza a 0 */
     padding-bottom: 100%; /* Questo crea un contenitore quadrato perché il padding-bottom è relativo alla larghezza */
     object-fit: cover; /* Assicura che l'immagine riempia completamente il contenitore quadrato */
     border-radius: 8px;
@@ -133,6 +133,7 @@ body {
     color: #1d3557;
     font-weight: 600;
     margin: 10px 0;
+    line-height: 1.2;
 }
 
 .asset-description {
@@ -216,6 +217,10 @@ button:disabled {
     .merge-section {
         flex: 1;
         max-width: 100%;
+    }
+
+    #opensea-assets {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 3fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
     }
 }
 
