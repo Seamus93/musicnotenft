@@ -10,12 +10,31 @@ const CONFIG = {
         apiKey: '9a5f591a-757a-4f14-b087-be44ec6f9d8f-00-37x90b1i3z4t0'
     },
     contract: {
-        abiUrl: './MyNFT.json',
-        // La chiave "contractAddress" sarà gestita attraverso l'ABI JSON
-        contractAddress: '' // Questo sarà caricato dal file ABI JSON
+        // Inserisci direttamente l'ABI del contratto qui
+        abi: [
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "initialOwner",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "ERC721EnumerableForbiddenBatchMint",
+                "type": "error"
+            },
+            // ... inserisci tutte le altre voci ABI qui ...
+        ],
+        // Inserisci direttamente l'indirizzo del contratto qui
+        contractAddress: '0x19e0ce4ee4B78C112A0580133972f8C065Db8866'
     },
-    opesea: {
-        
+    opensea: {
+        // Puoi aggiungere qui eventuali configurazioni per Opensea
     },
     baseJSON: {
         primaryNoteImgCID: 'QmdHbohgqxPMUafj1DXeigmwu57q8DSufQB8byVh9NfHZ7',
@@ -28,11 +47,9 @@ const CONFIG = {
 // Carica l'ABI e l'indirizzo del contratto
 async function loadContractConfig() {
     try {
-        const response = await fetch(CONFIG.contract.abiUrl);
-        const data = await response.json();
         return {
-            abi: data.abi,
-            contractAddress: data.contract_address
+            abi: CONFIG.contract.abi,
+            contractAddress: CONFIG.contract.contractAddress
         };
     } catch (error) {
         console.error('Error loading contract configuration:', error);
