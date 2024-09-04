@@ -255,12 +255,83 @@ button:disabled {
     }
 }
 
-@media (max-width: 480px) {
+/* Layout responsive per dispositivi con larghezza massima di 480px */
+@media (max-width: 540px) {
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start; /* Allinea gli elementi della navbar a sinistra */
+        padding: 10px; /* Aggiungi padding per una migliore visualizzazione */
+    }
+    
     .navbar-brand {
-        font-size: 1em;
+        font-size: 1.2em; /* Riduci leggermente la dimensione del testo */
+        margin-bottom: 10px; /* Aggiungi spazio sotto il brand */
+    }
+    
+    .navbar-links {
+        flex-direction: column; /* Disporre i link verticalmente */
+        align-items: flex-start; /* Allinea i link a sinistra */
+        width: 100%; /* Fai sì che occupino tutta la larghezza disponibile */
     }
     
     .navbar-links a {
-        font-size: 0.9em;
+        margin: 5px 0; /* Spazio verticale tra i link */
+        font-size: 0.9em; /* Riduci la dimensione del testo dei link */
+    }
+    
+    .login-button {
+        padding: 8px 16px; /* Adatta il padding per dispositivi più piccoli */
+        margin-top: 10px; /* Aggiungi spazio sopra il pulsante di login */
+        align-self: center; /* Centra il pulsante nella navbar */
+    }
+
+    /* Main Content */
+    .main-content {
+        padding: 10px; /* Riduci il padding per dispositivi piccoli */
+    }
+    
+    .mint-merge-container {
+        flex-direction: column; /* Disporre le sezioni verticalmente */
+    }
+    
+    .mint-section,
+    .merge-section {
+        flex: 1;
+        max-width: 100%; /* Assicurati che le sezioni occupino tutta la larghezza disponibile */
+        margin-bottom: 20px; /* Aggiungi spazio tra le sezioni */
+    }
+
+    /* OpenSea Assets Gallery */
+    #opensea-assets {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Riduci la dimensione minima delle colonne sui dispositivi mobili */
+        max-height: 400px; /* Riduci l'altezza massima della griglia */
+        overflow-y: auto; /* Aggiungi lo scroll verticale solo se necessario */
+    }
+
+    /* Stile della card */
+    .asset-image {
+        height: 200px; /* Riduci l'altezza dell'immagine per adattarla meglio ai dispositivi piccoli */
+    }
+
+    .asset-name {
+        font-size: 1em; /* Riduci la dimensione del testo per i nomi delle asset */
+        line-height: 1.2;
+    }
+
+    .asset-description {
+        font-size: 0.8em; /* Riduci la dimensione del testo per la descrizione */
+    }
+
+    /* Pulsanti generici */
+    button {
+        padding: 8px 16px; /* Riduci il padding per i pulsanti */
+        font-size: 0.9em; /* Riduci la dimensione del testo per i pulsanti */
+    }
+
+    /* Impostazioni specifiche per il pulsante di login */
+    .login-button {
+        font-size: 0.9em; /* Riduci la dimensione del testo del pulsante di login */
     }
 }
+
