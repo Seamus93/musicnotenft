@@ -139,10 +139,10 @@ body {
 .asset-image {
     width: 100%; /* La larghezza dell'immagine riempie completamente il contenitore */
     height: 347px; /* Inizialmente imposta l'altezza a 0 */
-    padding-bottom: 100%; /* Questo crea un contenitore quadrato perché il padding-bottom è relativo alla larghezza */
+    padding-bottom: 2%;
     object-fit: cover; /* Assicura che l'immagine riempia completamente il contenitore quadrato */
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
 }
 
 
