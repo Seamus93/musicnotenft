@@ -1,4 +1,6 @@
 /* loginButton.css */
+
+
 .login-button {
     margin-left: auto; /* Sposta il pulsante verso destra */
     display: inline-flex; /* Cambia il display per gestire il testo in modo flessibile */
@@ -12,9 +14,14 @@
     overflow: hidden; /* Nasconde il testo che va oltre il contenitore */
     white-space: nowrap; /* Impedisce che il testo vada a capo */
     text-overflow: ellipsis; /* Aggiunge i puntini di sospensione quando il testo è troppo lungo */
-    max-width: 200px;
-    width: 100%;
-    box-sizing: border-box;
+    max-width: 200px; /* Dimensione massima fissa per il bottone */
+    width: 200px; /* Larghezza fissa per il bottone */
+    height: 50px; /* Altezza fissa per il bottone */
+    box-sizing: border-box; /* Include il padding e il bordo nella larghezza e altezza */
+    font-size: 0.9em; /* Dimensione del testo fissa */
+    display: flex;
+    justify-content: center; /* Centra il testo orizzontalmente */
+    align-items: center; /* Centra il testo verticalmente */
 }
 
 .login-button:hover {
