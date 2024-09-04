@@ -22,6 +22,11 @@ const LoginButton = ({ onLogin }) => {
                     const { abi, contractAddress } = contractConfig;
                     const contract = new web3.eth.Contract(abi, contractAddress);
                     console.log('Contract initialized:', contract);
+                    if (typeof onLogin === 'function') {
+                        onLogin(account, contract, web3);
+                    } else {
+                        console.error('onLogin is not a function');
+                    }                    
                     onLogin(account, contract, web3);
                 } else {
                     console.error('Contract configuration missing');
