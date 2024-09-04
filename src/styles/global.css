@@ -217,7 +217,7 @@ button:disabled {
     }
     
     .navbar-brand {
-        font-size: 1.2em; /* Riduci leggermente la dimensione del testo */
+        font-size: 1.4em; /* Riduci leggermente la dimensione del testo */
         margin: 0; /* Aggiungi spazio sotto il brand */
     }
     
@@ -272,6 +272,11 @@ button:disabled {
 
 /* Layout responsive per dispositivi con larghezza massima di 480px */
 @media (max-width: 540px) {
+
+    .navbar-brand {
+        font-size: 1.2em; /* Riduci leggermente la dimensione del testo */
+        margin: 0; /* Aggiungi spazio sotto il brand */
+    }
 
     /* Main Content */
     .main-content {
