@@ -1,0 +1,87 @@
+/* asset.css */
+#opensea-assets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne */
+    grid-template-rows: repeat(3, auto); /* 3 righe */
+    gap: 20px;
+    max-height: 600px; /* Altezza massima della griglia per 3 righe */
+    overflow-y: scroll; /* Abilita lo scroll verticale */
+    margin-top: 20px;
+    justify-content: center;
+    scrollbar-width: thin; /* Per Firefox: barra di scorrimento sottile */
+    scrollbar-color: #2a9d8f #e2e2e2; /* Per Firefox: colore della barra e dello sfondo */
+}
+
+#opensea-assets::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 8px;
+    border: 3px solid #e2e2e2;
+}
+
+#opensea-assets::-webkit-scrollbar-thumb {
+    background-color: #2a9d8f;
+    border-radius: 8px;
+    border: 3px solid #e2e2e2;
+}
+
+#opensea-assets::-webkit-scrollbar-track {
+    background-color: #e2e2e2;
+    border-radius: 8px;
+}
+
+.asset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.asset:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.asset-image {
+    width: 100%;
+    height: 347px;
+    padding-bottom: 2%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px; 
+}
+
+.asset-name {
+    font-size: 1.2em;
+    color: #1d3557;
+    font-weight: 600;
+    margin: 10px 0;
+    line-height: 1.2;
+}
+
+.asset-description {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.asset-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #2a9d8f;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.asset-link:hover {
+    background-color: #21867a;
+}
