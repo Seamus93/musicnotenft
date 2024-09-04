@@ -37,27 +37,32 @@ body {
 #mergeButton {
     display: inline-block;
     margin: 0 10px;
-    padding: 10px 20px;
-    background-color: #2a9d8f;
+    padding: 12px 25px;
+    background: linear-gradient(145deg, #43c6ac, #191654);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #loginButton:hover, 
 #mintButton:hover, 
 #mergeButton:hover {
-    background-color: #21867a;
-    transform: translateY(-2px);
+    background: linear-gradient(145deg, #2a9d8f, #123456);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 #loginButton:disabled, 
 #mintButton:disabled, 
 #mergeButton:disabled {
-    background-color: #ccc;
+    background: #b0bec5;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* Stili per il contenuto principale */
@@ -65,34 +70,34 @@ body {
     padding: 20px;
 }
 
-/* Stili per gli asset di OpenSea */
+/* Stili per la galleria di NFT */
 #opensea-assets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
     margin-top: 20px;
-    justify-content: center;
+    padding: 0 20px;
 }
 
 .asset {
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 12px;
-    width: calc(25% - 30px);
-    box-sizing: border-box;
     text-align: center;
     background-color: #fff;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .asset:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
 }
 
 .asset-image {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 12px;
+    margin-bottom: 10px;
 }
 
 .asset-name {
@@ -132,10 +137,6 @@ body {
 
 /* Stile aggiuntivo per una migliore responsività */
 @media (max-width: 768px) {
-    .asset {
-        width: calc(50% - 30px);
-    }
-
     #loginButton, 
     #mintButton, 
     #mergeButton {
@@ -146,10 +147,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .asset {
-        width: 100%;
-    }
-
     .navbar-brand {
         font-size: 1.5em;
     }
