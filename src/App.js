@@ -69,12 +69,13 @@ function App() {
 
         <div className="file-metadata-container">
           <FileMetadata metadata={fileMetadata} />
+          <div className="transaction-info">
+            <p><strong>IPFS URI:</strong> {ipfsUri}</p>
+            <p><strong>Transaction Hash:</strong> {txHash}</p>
+          </div>
         </div>
 
-        <div className="transaction-info">
-          <p><strong>IPFS URI:</strong> {ipfsUri}</p>
-          <p><strong>Transaction Hash:</strong> {txHash}</p>
-        </div>
+       
 
         <OpenSeaAssets collectionSlug="musicnotenft" />
       </div>

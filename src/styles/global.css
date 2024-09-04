@@ -46,3 +46,23 @@ button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* Aggiungi questo al tuo file global.css o in un file CSS specifico */
+.transaction-info {
+    font-size: 1.1em;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-info p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.transaction-info strong {
+    color: #264653; /* Colore per i label */
+}
