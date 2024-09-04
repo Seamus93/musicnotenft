@@ -205,7 +205,19 @@ button:disabled {
 
 .login-button {
     margin-left: auto; /* Sposta il pulsante verso destra */
+    display: inline-flex; /* Cambia il display per gestire il testo in modo flessibile */
+    align-items: center; /* Allinea verticalmente il testo */
+    padding: 8px 16px;
+    background-color: #2a9d8f;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    overflow: hidden; /* Nasconde il testo che va oltre il contenitore */
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
+    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione quando il testo è troppo lungo */
 }
+
 
 /* Layout responsive */
 @media (max-width: 768px) {
