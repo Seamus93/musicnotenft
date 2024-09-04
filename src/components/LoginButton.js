@@ -41,7 +41,7 @@ const LoginButton = ({ onLogin }) => {
 
     return (
         <button onClick={initializeWeb3AndContract}>
-            {account ? 'Connected' : 'Login with MetaMask'}
+            {account ? account : 'Login with MetaMask'}
         </button>
     );
 };
