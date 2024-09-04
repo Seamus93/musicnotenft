@@ -12,6 +12,9 @@
     overflow: hidden; /* Nasconde il testo che va oltre il contenitore */
     white-space: nowrap; /* Impedisce che il testo vada a capo */
     text-overflow: ellipsis; /* Aggiunge i puntini di sospensione quando il testo è troppo lungo */
+    max-width: 200px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login-button:hover {
