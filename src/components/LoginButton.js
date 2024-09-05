@@ -1,29 +1,35 @@
-// LoginButton.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
-import { loadContractConfig } from '../config/apiConfig.js';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
 
-    const initializeWeb3AndContract = async () => {
-        if (typeof window.ethereum !== 'undefined') {
-            console.log('MetaMask is installed');
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const web3 = new Web3(window.ethereum);
-                const accounts = await web3.eth.getAccounts();
-                const account = accounts[0];
-                setAccount(account);
+    useEffect(() => {
+        checkConnection();
+    }, []);
 
-                const contractConfig = await loadContractConfig();
-                if (contractConfig) {
-                    const { abi, contractAddress } = contractConfig;
-                    const contract = new web3.eth.Contract(abi, contractAddress);              
-                    onLogin(account, contract, web3);
-                } else {
-                    console.error('Contract configuration missing');
+    // Funzione per verificare se l'utente è già connesso
+    const checkConnection = async () => {
+        if (typeof window.ethereum !== 'undefined') {
+            const web3 = new Web3(window.ethereum);
+            const accounts = await web3.eth.getAccounts();
+            if (accounts.length > 0) {
+                setAccount(accounts[0]);
+                onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
+            }
+        }
+    };
+
+    // Funzione per gestire il login e l'eventuale switch di account
+    const handleLogin = async () => {
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                const web3 = new Web3(window.ethereum);
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const accounts = await web3.eth.getAccounts();
+                if (accounts.length > 0) {
+                    setAccount(accounts[0]);
+                    onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
                 }
             } catch (error) {
                 console.error('User denied account access', error);
@@ -34,8 +40,8 @@ const LoginButton = ({ onLogin }) => {
     };
 
     return (
-        <button onClick={initializeWeb3AndContract}>
-            {account ? account : 'Login with MetaMask'}
+        <button onClick={handleLogin}>
+            {account ? `Connected: ${account}` : 'Login with MetaMask'}
         </button>
     );
 };
