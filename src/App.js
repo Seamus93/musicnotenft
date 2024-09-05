@@ -66,7 +66,7 @@ function App() {
                     <div className="mint-section">
                         <h2>Mint Your NFT</h2>
                         {web3 && account && !isContractInitialized ? (
-                            <InitializeContract web3={web3} onContractInitialized={handleContractInitialized} />
+                            <InitializeContract web3={web3} account={account} onContractInitialized={handleContractInitialized} />
                         ) : (
                             web3 && account && isContractInitialized ? (
                                 <MintButton
