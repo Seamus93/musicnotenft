@@ -25,6 +25,8 @@ function App() {
     };
 
     const handleLogin = (account, web3) => {
+        console.log('Account initialized:', account);
+        console.log('Web3 initialized:', web3);
         setAccount(account);
         setWeb3(web3); 
     };
