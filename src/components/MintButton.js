@@ -22,11 +22,6 @@ const MintButton = ({ account, contract }) => {
 
         try {
             const file = await promptFileUpload();
-            if (!file) {
-                console.error('No file selected');
-                setIsLoading(false); // Termina il caricamento se non c'è file
-                return;
-            }
             console.log("File selected:", file);
 
             const [mp3CID, isValidFile] = await Promise.all([
@@ -91,7 +86,7 @@ const MintButton = ({ account, contract }) => {
                 if (file) {
                     resolve(file);
                 } else {
-                    resolve(null); // Risolve con null se nessun file è stato selezionato
+                    reject(new Error('No file selected'));
                 }
             };
             fileInput.click();
@@ -104,7 +99,7 @@ const MintButton = ({ account, contract }) => {
                 {isLoading ? 'Minting...' : 'Mint NFT'}
             </button>
             {isLoading && (
-                <div className="loading-spinner"></div>
+                    <div className="loading-spinner"></div>
             )}
         </div>
     );

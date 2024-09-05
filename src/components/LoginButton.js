@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from 'react';
+// LoginButton.js
+
+import React, { useState } from 'react';
 import Web3 from 'web3';
 import { loadContractConfig } from '../config/apiConfig.js';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
-    const [loading, setLoading] = useState(false);
 
-    // Funzione per connettere MetaMask
     const initializeWeb3AndContract = async () => {
         if (typeof window.ethereum !== 'undefined') {
-            setLoading(true);
+            console.log('MetaMask is installed');
             try {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
-
-                // Richiedi sempre la connessione e apri MetaMask
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const userAccount = accounts[0];
-                setAccount(userAccount);
+                const accounts = await web3.eth.getAccounts();
+                const account = accounts[0];
+                setAccount(account);
 
                 const contractConfig = await loadContractConfig();
                 if (contractConfig) {
                     const { abi, contractAddress } = contractConfig;
-                    const contract = new web3.eth.Contract(abi, contractAddress);
-                    console.log('Contract initialized:', contract);
+                    const contract = new web3.eth.Contract(abi, contractAddress);              
+                    onLogin(account, contract, web3);
                 } else {
-                    console.error('Contract configuration is missing');
+                    console.error('Contract configuration missing');
                 }
             } catch (error) {
-                console.error('Error accessing accounts or MetaMask interaction failed:', error);
-            } finally {
-                setLoading(false);
+                console.error('User denied account access', error);
             }
         } else {
             console.error('MetaMask is not installed');
@@ -37,8 +34,8 @@ const LoginButton = ({ onLogin }) => {
     };
 
     return (
-        <button onClick={initializeWeb3AndContract} disabled={loading}>
-            {loading ? 'Connecting...' : account ? account : 'Login with MetaMask'}
+        <button onClick={initializeWeb3AndContract}>
+            {account ? account : 'Login with MetaMask'}
         </button>
     );
 };
