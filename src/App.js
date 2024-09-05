@@ -60,16 +60,19 @@ function App() {
             {/* Main Content */}
             <div className="main-content">
                 <div className="mint-merge-container">
-                    <div className="mint-section">
-                        <h2>Mint Your NFT</h2>
-                        <MintButton
-                            web3={web3}
-                            account={account}
-                            contract={contract}
-                            onMintComplete={handleMintComplete}
-                        />
-                    </div>
-
+                  <div className="mint-section">
+                      <h2>Mint Your NFT</h2>
+                      {web3 && account && contract ? (
+                          <MintButton
+                              web3={web3}
+                              account={account}
+                              contract={contract}
+                              onMintComplete={handleMintComplete}
+                          />
+                      ) : (
+                          <p>Please log in and initialize the contract to mint NFTs.</p>
+                      )}
+                  </div>
                     <div className="merge-section">
                         <h2>Merge Your NFTs</h2>
                         <MergeButton

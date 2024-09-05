@@ -1,5 +1,3 @@
-// MintButton.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { uploadFileToIPFS, validateAudioFile, verifyNoteWithPython, createAndUpdateMetadata, fetchAndUpdateMetadata } from './helpers.js';
@@ -9,12 +7,17 @@ const MintButton = ({ account, contract }) => {
 
     const mintNFT = async () => {
         console.log("Mint button clicked");
+
+        // Verifica che contract e account siano disponibili
         if (!contract) {
             console.error("Contract is null or undefined");
+            alert('Contract is not initialized. Please try again later.');
             return;
         }
+
         if (!account) {
             console.error("Account is null or undefined");
+            alert('Account is not initialized. Please log in first.');
             return;
         }
 
@@ -24,40 +27,36 @@ const MintButton = ({ account, contract }) => {
             const file = await promptFileUpload();
             console.log("File selected:", file);
 
+            // Verifica e carica il file su IPFS
             const [mp3CID, isValidFile] = await Promise.all([
                 uploadFileToIPFS(file),
                 validateAudioFile(file)
             ]);
-            console.log("File uploaded to IPFS with CID:", mp3CID);
-            console.log("Is the file valid?", isValidFile);
 
             if (!isValidFile) {
                 alert('Invalid file. Please upload a valid MP3 file.');
-                setIsLoading(false);
                 return;
             }
 
             const fileUri = `ipfs://${mp3CID}`;
             console.log("File URI:", fileUri);
 
+            // Verifica la validità del file
             const isNoteValid = await verifyNoteWithPython(fileUri);
-            console.log("Is the note valid?", isNoteValid);
 
             if (!isNoteValid) {
                 alert('Invalid note');
-                setIsLoading(false);
                 return;
             }
 
+            // Crea e aggiorna i metadati
             const mp3MetadataCID = await createAndUpdateMetadata(file, true, `metadata_${file.name.replace('.mp3', '')}.json`);
-            console.log("Metadata CID:", mp3MetadataCID);
-
             const updatedMetadataCID = await fetchAndUpdateMetadata(mp3MetadataCID, mp3CID, true, file.name);
-            console.log("Updated metadata CID:", updatedMetadataCID);
-
             const ipfsURI = `ipfs://${updatedMetadataCID}`;
+
             console.log("IPFS URI for the metadata:", ipfsURI);
 
+            // Mostra i metadati per verifica
             try {
                 const response = await axios.get(`https://ipfs.io/ipfs/${updatedMetadataCID}`);
                 console.log('Metadata JSON:', response.data);
@@ -65,12 +64,14 @@ const MintButton = ({ account, contract }) => {
                 console.error('Error accessing JSON from IPFS:', err.message);
             }
 
+            // Invia la transazione di minting
             console.log("Sending transaction...");
             const tx = await contract.methods.mintNFTs(1, [ipfsURI]).send({ from: account });
             console.log('Transaction successful:', tx);
 
         } catch (error) {
             console.error('Error minting NFT:', error);
+            alert('Error minting NFT. Please try again later.');
         } finally {
             setIsLoading(false);
         }
