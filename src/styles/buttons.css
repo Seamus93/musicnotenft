@@ -1,4 +1,5 @@
 /* loginButton.css */
+
 .login-button {
     margin-left: auto; /* Sposta il pulsante verso destra */
     display: inline-flex; /* Cambia il display per gestire il testo in modo flessibile */
