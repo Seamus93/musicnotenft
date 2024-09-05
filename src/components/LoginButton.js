@@ -101,7 +101,7 @@ const LoginButton = ({ onLogin }) => {
                     onClose={handleClose}
                 >
                     {accountsList.map((acc) => (
-                        <MenuItem key={acc} onClick={() => handleAccountSelect(acc)}>
+                        <MenuItem key={acc} onClick={() => handleAccountSelect(acc)} className="menu-item">
                             {/* Aggiunge un avatar con le prime 2 lettere dell'account */}
                             <Avatar className="avatar"> {acc.slice(2, 4).toUpperCase()} </Avatar>
                             {shortenAddress(acc)}
