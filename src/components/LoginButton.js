@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 // Material UI components
 import { Button, Menu, MenuItem, Avatar } from '@mui/material';
+import metamaskIcon from '../assets/images/metamask-icon.svg';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
