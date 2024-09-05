@@ -87,8 +87,11 @@ const MintButton = ({ account, contract }) => {
                 if (file) {
                     resolve(file);
                 } else {
-                    reject(new Error('No file selected'));
+                    resolve(null); // Se nessun file viene selezionato, risolvi con null
                 }
+            };
+            fileInput.onerror = (e) => {
+                reject(new Error('File input error')); // Gestisci errori del file input
             };
             fileInput.click();
         });
