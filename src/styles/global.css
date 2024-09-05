@@ -25,6 +25,7 @@ body {
     margin: 0 auto;
 }
 
+.button,
 button {
     display: inline-block;
     margin: 5px 0;
