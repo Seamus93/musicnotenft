@@ -19,7 +19,16 @@
     background-color: #21867a;
 }
 
+.button-content {
+    display: flex;
+    align-items: center;
+}
 
+.metamask-icon {
+    width: 24px; /* Dimensione dell'icona */
+    height: 24px; /* Dimensione dell'icona */
+    margin-right: 8px; /* Spazio tra l'icona e il testo */
+}
 
 /* mintMerge.css */
 .mint-merge-container {

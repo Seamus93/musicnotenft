@@ -90,10 +90,14 @@ const LoginButton = ({ onLogin }) => {
 
     return (
         <div className="login-button">
-            <Button onClick={isLogged ? toggleMenu : handleLogin} className="button" >
-            <img src={metamaskIcon} alt="MetaMask" className="metamask-icon" />
-                {isLogged ? shortenAddress(account) : 'Login with'}
-            </Button>
+        <Button onClick={isLogged ? toggleMenu : handleLogin} className="button">
+            {isLogged ? (shortenAddress(account)) : (
+                <span className="button-content">
+                    <img src={metamaskIcon} alt="MetaMask" className="metamask-icon" />
+                    <span className="button-text">Login with MetaMask</span>
+                </span>
+            )}
+        </Button>
 
             {isLogged && (
                 <Menu
