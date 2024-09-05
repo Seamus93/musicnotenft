@@ -3,24 +3,29 @@ import Web3 from 'web3';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
         checkConnection();
+        // Imposta un listener per gestire il cambio di account
+        window.ethereum?.on('accountsChanged', handleAccountChange);
+        return () => {
+            window.ethereum?.removeListener('accountsChanged', handleAccountChange);
+        };
     }, []);
 
-    // Funzione per verificare se l'utente è già connesso
     const checkConnection = async () => {
         if (typeof window.ethereum !== 'undefined') {
             const web3 = new Web3(window.ethereum);
             const accounts = await web3.eth.getAccounts();
             if (accounts.length > 0) {
                 setAccount(accounts[0]);
+                setIsLogged(true);
                 onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
             }
         }
     };
 
-    // Funzione per gestire il login e l'eventuale switch di account
     const handleLogin = async () => {
         if (typeof window.ethereum !== 'undefined') {
             try {
@@ -29,6 +34,7 @@ const LoginButton = ({ onLogin }) => {
                 const accounts = await web3.eth.getAccounts();
                 if (accounts.length > 0) {
                     setAccount(accounts[0]);
+                    setIsLogged(true);
                     onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
                 }
             } catch (error) {
@@ -39,9 +45,20 @@ const LoginButton = ({ onLogin }) => {
         }
     };
 
+    const handleAccountChange = (accounts) => {
+        if (accounts.length > 0) {
+            setAccount(accounts[0]);
+            onLogin(accounts[0], new Web3(window.ethereum)); // Aggiorna il web3 con il nuovo account
+        } else {
+            setAccount(null);
+            setIsLogged(false);
+            onLogin(null, null); // Notifica il componente padre che l'utente si è disconnesso
+        }
+    };
+
     return (
         <button onClick={handleLogin}>
-            {account ? `Connected: ${account}` : 'Login with MetaMask'}
+            {isLogged ? `Connected: ${account}` : 'Login with MetaMask'}
         </button>
     );
 };

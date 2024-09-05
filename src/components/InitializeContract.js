@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { loadContractConfig } from '../config/apiConfig.js';
 
 const InitializeContract = ({ web3, account, onContractInitialized }) => {
-    const [contract, setContract] = useState(null);
 
     useEffect(() => {
         if (web3 && account) {
@@ -16,7 +15,6 @@ const InitializeContract = ({ web3, account, onContractInitialized }) => {
             if (contractConfig) {
                 const { abi, contractAddress } = contractConfig;
                 const contractInstance = new web3.eth.Contract(abi, contractAddress);
-                setContract(contractInstance);
                 onContractInitialized(contractInstance); // Comunica il contratto al componente padre
             } else {
                 console.error('Contract configuration missing');
@@ -25,12 +23,6 @@ const InitializeContract = ({ web3, account, onContractInitialized }) => {
             console.error('Error initializing contract:', error);
         }
     };
-
-    return (
-        <div>
-            {contract ? <p>Contract initialized!</p> : <p>Initializing contract...</p>}
-        </div>
-    );
 };
 
 export default InitializeContract;
