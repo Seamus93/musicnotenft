@@ -89,11 +89,7 @@ const LoginButton = ({ onLogin }) => {
 
     return (
         <div className="login-button-container">
-            <Button
-                onClick={isLogged ? toggleMenu : handleLogin}
-                variant="contained"
-                color="primary"
-            >
+            <Button onClick={isLogged ? toggleMenu : handleLogin} className="button" >
                 {isLogged ? shortenAddress(account) : 'Login with MetaMask'}
             </Button>
 
@@ -107,9 +103,7 @@ const LoginButton = ({ onLogin }) => {
                     {accountsList.map((acc) => (
                         <MenuItem key={acc} onClick={() => handleAccountSelect(acc)}>
                             {/* Aggiunge un avatar con le prime 2 lettere dell'account */}
-                            <Avatar style={{ marginRight: '10px' }}>
-                                {acc.slice(2, 4).toUpperCase()}
-                            </Avatar>
+                            <Avatar className="avatar"> {acc.slice(2, 4).toUpperCase()} </Avatar>
                             {shortenAddress(acc)}
                         </MenuItem>
                     ))}
