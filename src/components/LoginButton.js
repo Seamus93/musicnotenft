@@ -76,7 +76,7 @@ const LoginButton = ({ onLogin }) => {
     return (
         <div className="login-button-container">
             <button onClick={isLogged ? toggleMenu : handleLogin}>
-                {isLogged ? `Connected: ${account}` : 'Login with MetaMask'}
+                {isLogged ? account : 'Login with MetaMask'}
             </button>
             {isLogged && menuOpen && (
                 <div className="account-menu">
