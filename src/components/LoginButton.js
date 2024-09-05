@@ -4,6 +4,8 @@ import Web3 from 'web3';
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
     const [isLogged, setIsLogged] = useState(false);
+    const [accountsList, setAccountsList] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         checkConnection();
@@ -21,6 +23,7 @@ const LoginButton = ({ onLogin }) => {
             if (accounts.length > 0) {
                 setAccount(accounts[0]);
                 setIsLogged(true);
+                setAccountsList(accounts);
                 onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
             }
         }
@@ -35,6 +38,7 @@ const LoginButton = ({ onLogin }) => {
                 if (accounts.length > 0) {
                     setAccount(accounts[0]);
                     setIsLogged(true);
+                    setAccountsList(accounts);
                     onLogin(accounts[0], web3); // Comunica l'account e web3 al componente padre
                 }
             } catch (error) {
@@ -48,18 +52,46 @@ const LoginButton = ({ onLogin }) => {
     const handleAccountChange = (accounts) => {
         if (accounts.length > 0) {
             setAccount(accounts[0]);
+            setIsLogged(true);
+            setAccountsList(accounts);
             onLogin(accounts[0], new Web3(window.ethereum)); // Aggiorna il web3 con il nuovo account
         } else {
             setAccount(null);
             setIsLogged(false);
+            setAccountsList([]);
             onLogin(null, null); // Notifica il componente padre che l'utente si è disconnesso
         }
     };
 
+    const handleAccountSelect = (account) => {
+        setAccount(account);
+        setMenuOpen(false); // Chiude il menu a discesa
+        onLogin(account, new Web3(window.ethereum)); // Aggiorna il web3 con il nuovo account
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
     return (
-        <button onClick={handleLogin}>
-            {isLogged ? `Connected: ${account}` : 'Login with MetaMask'}
-        </button>
+        <div className="login-button-container">
+            <button onClick={isLogged ? toggleMenu : handleLogin}>
+                {isLogged ? `Connected: ${account}` : 'Login with MetaMask'}
+            </button>
+            {isLogged && menuOpen && (
+                <div className="account-menu">
+                    {accountsList.map((acc) => (
+                        <div
+                            key={acc}
+                            className="account-menu-item"
+                            onClick={() => handleAccountSelect(acc)}
+                        >
+                            {acc}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 };
 
