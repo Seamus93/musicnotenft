@@ -96,7 +96,7 @@ const MintButton = ({ account, contract }) => {
 
     return (
         <div>
-            <button onClick={mintNFT} disabled={isLoading}>
+            <button onClick={mintNFT} disabled={isLoading || !contract || !account}>
                 {isLoading ? 'Minting...' : 'Mint NFT'}
             </button>
             {isLoading && (

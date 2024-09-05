@@ -15,6 +15,7 @@ function App() {
     const [txHash, setTxHash] = useState(null);
     const [ipfsUri, setIpfsUri] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
+    const [isContractInitialized, setIsContractInitialized] = useState(false);
 
     useEffect(() => {
         loadOpenSeaAssets();
@@ -28,12 +29,14 @@ function App() {
         console.log('Account initialized:', account);
         console.log('Web3 initialized:', web3);
         setAccount(account);
-        setWeb3(web3); 
+        setWeb3(web3);
+        setContract(contract);
     };
 
     const handleContractInitialized = (contract) => { 
       console.log('Contract initialized:', contract);
       setContract(contract);
+      setIsContractInitialized(true);
     };
 
     const handleMintComplete = (ipfsUri, txHash, fileMetadata) => {
@@ -60,19 +63,23 @@ function App() {
             {/* Main Content */}
             <div className="main-content">
                 <div className="mint-merge-container">
-                  <div className="mint-section">
-                      <h2>Mint Your NFT</h2>
-                      {web3 && account && contract ? (
-                          <MintButton
-                              web3={web3}
-                              account={account}
-                              contract={contract}
-                              onMintComplete={handleMintComplete}
-                          />
-                      ) : (
-                          <p>Please log in and initialize the contract to mint NFTs.</p>
-                      )}
-                  </div>
+                    <div className="mint-section">
+                        <h2>Mint Your NFT</h2>
+                        {web3 && account && !isContractInitialized ? (
+                            <InitializeContract web3={web3} onContractInitialized={handleContractInitialized} />
+                        ) : (
+                            web3 && account && isContractInitialized ? (
+                                <MintButton
+                                    web3={web3}
+                                    account={account}
+                                    contract={contract}
+                                    onMintComplete={handleMintComplete}
+                                />
+                            ) : (
+                                <p>Log in to mint NFTs.</p>
+                            )
+                        )}
+                    </div>
                     <div className="merge-section">
                         <h2>Merge Your NFTs</h2>
                         <MergeButton
@@ -99,9 +106,6 @@ function App() {
                 )}
 
                 <OpenSeaAssets collectionSlug="musicnotenft" />
-                {web3 && account && (
-                    <InitializeContract web3={web3} onContractInitialized={handleContractInitialized} />
-                )}
             </div>
         </div>
     );
