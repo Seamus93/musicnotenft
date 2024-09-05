@@ -12,14 +12,16 @@
     overflow: hidden; /* Nasconde il testo che va oltre il contenitore */
     white-space: nowrap; /* Impedisce che il testo vada a capo */
     text-overflow: ellipsis; /* Aggiunge i puntini di sospensione quando il testo è troppo lungo */
-    position: relative; /* Per posizionare il menu a discesa */
 }
 
 .login-button:hover {
     background-color: #21867a;
 }
 
-/* Stile per la tendina degli account */
+.login-button-container {
+    position: relative;
+}
+
 .account-menu {
     position: absolute;
     top: 100%; /* Posiziona il menu subito sotto il pulsante */
@@ -102,21 +104,17 @@
     position: absolute;
     bottom: 10px; /* Spazio dal fondo della card */
     right: 10px;  /* Spazio dal lato destro della card */
-    border: 4px solid rgba(0, 0, 0, 0.1); /* Colore di sfondo del cerchio */
-    border-left-color: #2a9d8f; /* Colore del cerchio di caricamento */
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #09f;
     border-radius: 50%;
-    width: 20px; /* Ridotto per essere più piccolo */
-    height: 20px; /* Ridotto per essere più piccolo */
-    animation: spin 0.75s linear infinite; /* Velocità di rotazione più veloce */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
+    to {
         transform: rotate(360deg);
     }
 }
-
 
