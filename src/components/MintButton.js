@@ -1,3 +1,9 @@
+// MintButton.js
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { uploadFileToIPFS, validateAudioFile, verifyNoteWithPython, createAndUpdateMetadata, fetchAndUpdateMetadata } from './helpers.js';
+
 const MintButton = ({ account, contract }) => {
     const [isLoading, setIsLoading] = useState(false);
 
