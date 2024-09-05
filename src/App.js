@@ -30,6 +30,7 @@ function App() {
     };
 
     const handleContractInitialized = (contract) => { 
+      console.log('Contract initialized:', contract);
       setContract(contract);
     };
 
