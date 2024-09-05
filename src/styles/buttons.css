@@ -12,7 +12,6 @@
     transition: background-color 0.3s ease;
     overflow: hidden; /* Nasconde il testo che va oltre il contenitore */
     white-space: nowrap; /* Impedisce che il testo vada a capo */
-    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione quando il testo è troppo lungo */
 }
 
 .login-button:hover {
