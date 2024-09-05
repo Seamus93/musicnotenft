@@ -18,47 +18,7 @@
     background-color: #21867a;
 }
 
-.login-button-container {
-    position: relative;
-}
 
-.account-menu {
-    position: absolute;
-    top: 100%; /* Posiziona il menu subito sotto il pulsante */
-    left: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 10; /* Assicura che il menu sia sopra gli altri elementi */
-    width: 200px; /* Larghezza del menu */
-    max-height: 300px; /* Altezza massima del menu con scroll */
-    overflow-y: auto; /* Aggiunge una barra di scorrimento se necessario */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Animazione di transizione */
-    opacity: 0; /* Menu nascosto per impostazione predefinita */
-    visibility: hidden; /* Menu nascosto per impostazione predefinita */
-}
-
-.account-menu.show {
-    opacity: 1; /* Menu visibile */
-    visibility: visible; /* Menu visibile */
-}
-
-.account-menu-item {
-    padding: 10px 16px;
-    cursor: pointer;
-    color: #333;
-    font-size: 1em;
-    border-bottom: 1px solid #ddd;
-}
-
-.account-menu-item:hover {
-    background-color: #f0f0f0;
-}
-
-.account-menu-item:last-child {
-    border-bottom: none;
-}
 
 /* mintMerge.css */
 .mint-merge-container {
@@ -104,16 +64,19 @@
     position: absolute;
     bottom: 10px; /* Spazio dal fondo della card */
     right: 10px;  /* Spazio dal lato destro della card */
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #09f;
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Colore di sfondo del cerchio */
+    border-left-color: #2a9d8f; /* Colore del cerchio di caricamento */
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
+    width: 30px; /* Ridotto per essere più piccolo */
+    height: 30px; /* Ridotto per essere più piccolo */
+    animation: spin 0.75s linear infinite; /* Velocità di rotazione più veloce */
 }
 
 @keyframes spin {
-    to {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
         transform: rotate(360deg);
     }
 }
