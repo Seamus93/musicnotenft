@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
+// Material UI components
+import { Button, Menu, MenuItem, Avatar } from '@mui/material';
 
 const LoginButton = ({ onLogin }) => {
     const [account, setAccount] = useState(null);
     const [isLogged, setIsLogged] = useState(false);
     const [accountsList, setAccountsList] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);  // To control the Material-UI menu
 
     useEffect(() => {
         checkConnection();
@@ -67,29 +70,50 @@ const LoginButton = ({ onLogin }) => {
         setAccount(account);
         setMenuOpen(false); // Chiude il menu a discesa
         onLogin(account, new Web3(window.ethereum)); // Aggiorna il web3 con il nuovo account
+        handleClose();  // Chiude il menu
     };
 
-    const toggleMenu = () => {
+    const toggleMenu = (event) => {
+        setAnchorEl(event.currentTarget);  // Apre il menu
         setMenuOpen(!menuOpen);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);  // Chiude il menu
+    };
+
+    // Funzione per abbreviare gli indirizzi
+    const shortenAddress = (addr) => {
+        return addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : '';
     };
 
     return (
         <div className="login-button-container">
-            <button onClick={isLogged ? toggleMenu : handleLogin}>
-                {isLogged ? account : 'Login with MetaMask'}
-            </button>
-            {isLogged && menuOpen && (
-                <div className="account-menu">
+            <Button
+                onClick={isLogged ? toggleMenu : handleLogin}
+                variant="contained"
+                color="primary"
+            >
+                {isLogged ? shortenAddress(account) : 'Login with MetaMask'}
+            </Button>
+
+            {isLogged && (
+                <Menu
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
                     {accountsList.map((acc) => (
-                        <div
-                            key={acc}
-                            className="account-menu-item"
-                            onClick={() => handleAccountSelect(acc)}
-                        >
-                            {acc}
-                        </div>
+                        <MenuItem key={acc} onClick={() => handleAccountSelect(acc)}>
+                            {/* Aggiunge un avatar con le prime 2 lettere dell'account */}
+                            <Avatar style={{ marginRight: '10px' }}>
+                                {acc.slice(2, 4).toUpperCase()}
+                            </Avatar>
+                            {shortenAddress(acc)}
+                        </MenuItem>
                     ))}
-                </div>
+                </Menu>
             )}
         </div>
     );
